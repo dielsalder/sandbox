@@ -6,7 +6,7 @@ interface ExamplePage extends AstroInstance {
 }
 
 const examples: ExamplePage[] = Object.values(
-  import.meta.glob("./examples/*.astro", { eager: true })
+  import.meta.glob("./examples/*/*.astro", { eager: true })
 );
 ---
 
