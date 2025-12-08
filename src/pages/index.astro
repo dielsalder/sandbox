@@ -1,7 +1,24 @@
 ---
+import type { AstroInstance } from "astro";
 import Layout from "../layouts/Layout.astro";
+interface ExamplePage extends AstroInstance {
+  title: string;
+}
+
+const examples: ExamplePage[] = Object.values(
+  import.meta.glob("./examples/*.astro", { eager: true })
+);
 ---
 
 <Layout title="Home">
-  <h1>Home</h1>
+  <h1 class="text-xl">Home</h1>
+  <ul class="list-disc list-inside">
+    {
+      examples.map((example) => (
+        <li class="text-blue-500 hover:text-sky-500">
+          <a href={example.url}>{example.title}</a>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
