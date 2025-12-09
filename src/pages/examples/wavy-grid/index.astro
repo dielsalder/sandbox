@@ -4,4 +4,13 @@ import { Demo } from "./_Demo";
 export const title = "Wavy grid";
 ---
 
-<Layout title={title}><Demo client:load /></Layout>
+<Layout title={title}
+  ><Demo client:load />
+  <p class="dark:text-gray-200">
+    Credit to <a
+      class="text-blue-500 dark:text-blue-400 hover:text-blue-300"
+      href="https://blog.maximeheckel.com/posts/the-study-of-shaders-with-react-three-fiber/"
+      >Maxime Heckel</a
+    >
+  </p>
+</Layout>
