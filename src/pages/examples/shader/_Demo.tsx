@@ -3,18 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { Color } from "three";
 import "./_style.css";
-
-const vertexShader = `
-void main() {
-  vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-  modelPosition.y += sin(modelPosition.x * 4.0) * 0.2;
-
-  vec4 viewPosition = viewMatrix * modelPosition;
-  vec4 projectedPosition = projectionMatrix * viewPosition;
-
-  gl_Position = projectedPosition;
-}
-`;
+import vertexShader from "./_shaders/vertexShader.vert?raw";
 
 const Flag = () => {
   // This reference will give us direct access to the mesh
