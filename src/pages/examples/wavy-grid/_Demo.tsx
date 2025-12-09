@@ -21,7 +21,7 @@ const Flag = () => {
       <shaderMaterial
         fragmentShader={fragmentShader}
         vertexShader={vertexShader}
-        wireframe
+        // wireframe
       />
     </mesh>
   );
