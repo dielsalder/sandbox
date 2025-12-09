@@ -4,6 +4,7 @@ import {
   GradientType,
   MeshDistortMaterial,
   MeshTransmissionMaterial,
+  OrbitControls,
 } from "@react-three/drei";
 import { Canvas, extend } from "@react-three/fiber";
 import { useControls } from "leva";
@@ -41,6 +42,7 @@ export function R3F() {
             />
           </MeshDistortMaterial>
         </mesh>
+        <OrbitControls />
       </Canvas>
     </div>
   );
