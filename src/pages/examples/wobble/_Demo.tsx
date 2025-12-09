@@ -1,29 +1,45 @@
 import {
   CubeCamera,
   GradientTexture,
+  GradientType,
   MeshDistortMaterial,
-  MeshWobbleMaterial,
+  MeshTransmissionMaterial,
 } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { DotScreen, EffectComposer } from "@react-three/postprocessing";
-import { BlendFunction } from "postprocessing";
+import { Canvas, extend } from "@react-three/fiber";
+import { useControls } from "leva";
+
 export function R3F() {
+  const distort = useControls("Distort", {
+    intensity: { value: 1, min: 0, max: 2 },
+    speed: { value: 10, min: 0, max: 20 },
+  });
+  const sphere = useControls("Sphere", {
+    size: { value: 1, min: 0, max: 5 },
+    segments: { value: 50, min: 0, max: 100 },
+  });
+
+  const light = useControls("Light", {
+    intensity: { value: 2, min: 0, max: 10 },
+  });
   return (
     <div id="canvas-container">
       <Canvas className="example">
         <CubeCamera position={[0, 0, 100]} />
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={light.intensity} />
         <mesh>
-          <sphereGeometry args={[1, 50, 50]} />
-          {/* <MeshWobbleMaterial factor={1} speed={10} /> */}
-          <meshBasicMaterial>
+          <sphereGeometry
+            args={[sphere.size, sphere.segments, sphere.segments]}
+          />
+          <MeshDistortMaterial
+            distort={distort.intensity}
+            speed={distort.speed}
+          >
             <GradientTexture
-              stops={[0, 1]} // As many stops as you want
-              colors={["aquamarine", "hotpink"]} // Colors need to match the number of stops
-              size={1024} // Size is optional, default = 1024
+              stops={[0, 0.5, 1]}
+              colors={["aquamarine", "purple", "hotpink"]}
+              size={1024}
             />
-          </meshBasicMaterial>
-          <MeshDistortMaterial distort={1} speed={10} />
+          </MeshDistortMaterial>
         </mesh>
       </Canvas>
     </div>
