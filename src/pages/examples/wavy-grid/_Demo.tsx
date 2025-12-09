@@ -4,6 +4,7 @@ import { useMemo, useRef } from "react";
 import { Color } from "three";
 import "./_style.css";
 import vertexShader from "./_shaders/vertexShader.vert?raw";
+import fragmentShader from "./_shaders/shader.frag?raw";
 
 const Flag = () => {
   // This reference will give us direct access to the mesh
@@ -18,7 +19,7 @@ const Flag = () => {
     >
       <planeGeometry args={[1, 1, 32, 32]} />
       <shaderMaterial
-        // fragmentShader={fragmentShader}
+        fragmentShader={fragmentShader}
         vertexShader={vertexShader}
         wireframe
       />
