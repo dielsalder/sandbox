@@ -1,1 +1,5 @@
 @import "tailwindcss";
+#canvas-container > .example {
+  width: 100dvw !important;
+  height: 100dvh !important;
+}
